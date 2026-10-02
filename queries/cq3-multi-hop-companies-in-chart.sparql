@@ -1,0 +1,14 @@
+# CQ3 — Which companies are mentioned in the same chart as Q3 2024 revenue?
+# Multi-hop: Chart → Metric → TimePeriod, and Chart → Metric → Company
+
+PREFIX fin: <https://froilan-sia.github.io/finance-ontology-rag/ontology#>
+
+SELECT DISTINCT ?companyName
+WHERE {
+    ?chart a fin:Chart ;
+           fin:chartShowsMetric ?metric .
+    ?metric fin:forTimePeriod ?period ;
+            fin:metricForCompany ?company .
+    ?period fin:hasPeriodLabel "Q3 2024" .
+    ?company fin:hasName ?companyName .
+}

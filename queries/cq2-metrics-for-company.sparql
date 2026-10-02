@@ -1,0 +1,14 @@
+# CQ2 — What metrics does a company report, and for what time period?
+
+PREFIX fin: <https://froilan-sia.github.io/finance-ontology-rag/ontology#>
+
+SELECT ?metricLabel ?value ?periodLabel
+WHERE {
+    ?metric a fin:Metric ;
+            fin:metricForCompany ?company ;
+            fin:hasValue ?value ;
+            fin:forTimePeriod ?period .
+    ?company fin:hasName ?metricLabel .
+    ?period fin:hasPeriodLabel ?periodLabel .
+}
+ORDER BY ?periodLabel

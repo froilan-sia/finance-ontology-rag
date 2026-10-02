@@ -1,0 +1,27 @@
+@prefix sh:  <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix fin: <https://froilan-sia.github.io/finance-ontology-rag/ontology#> .
+
+# Every Metric must have a value, a company, and a time period.
+
+fin:MetricShape a sh:NodeShape ;
+    sh:targetClass fin:Metric ;
+
+    sh:property [
+        sh:path fin:hasValue ;
+        sh:minCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:message "Every metric must have a numeric value." ;
+    ] ;
+
+    sh:property [
+        sh:path fin:metricForCompany ;
+        sh:minCount 1 ;
+        sh:message "Every metric must be associated with a company." ;
+    ] ;
+
+    sh:property [
+        sh:path fin:forTimePeriod ;
+        sh:minCount 1 ;
+        sh:message "Every metric must be associated with a time period." ;
+    ] .

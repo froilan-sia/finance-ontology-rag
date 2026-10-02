@@ -1,0 +1,95 @@
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix fin:  <https://froilan-sia.github.io/finance-ontology-rag/ontology#> .
+
+# ─────────────────────────────────────────────────────────────
+# Ontology declaration
+# ─────────────────────────────────────────────────────────────
+
+fin: a owl:Ontology ;
+    rdfs:label "Finance Ontology for RAG" ;
+    rdfs:comment "An ontology for structuring financial documents for semantic retrieval and GraphRAG pipelines." .
+
+# ─────────────────────────────────────────────────────────────
+# Classes
+# ─────────────────────────────────────────────────────────────
+
+fin:Document a owl:Class ;
+    rdfs:label "Document" ;
+    rdfs:comment "A financial document — report, filing, chart, or other artefact." .
+
+fin:Company a owl:Class ;
+    rdfs:label "Company" ;
+    rdfs:comment "An organization mentioned or referenced in a document." .
+
+fin:Metric a owl:Class ;
+    rdfs:label "Metric" ;
+    rdfs:comment "A measurable financial quantity — revenue, profit, margin, EPS, etc." .
+
+fin:TimePeriod a owl:Class ;
+    rdfs:label "Time Period" ;
+    rdfs:comment "A fiscal quarter, year, or other reporting period." .
+
+fin:Chart a owl:Class ;
+    rdfs:label "Chart" ;
+    rdfs:comment "A visual representation within a document." .
+
+# ─────────────────────────────────────────────────────────────
+# Object Properties — relationships between entities
+# ─────────────────────────────────────────────────────────────
+
+fin:mentionsCompany a owl:ObjectProperty ;
+    rdfs:label "mentions company" ;
+    rdfs:domain fin:Document ;
+    rdfs:range  fin:Company .
+
+fin:reportsMetric a owl:ObjectProperty ;
+    rdfs:label "reports metric" ;
+    rdfs:domain fin:Document ;
+    rdfs:range  fin:Metric .
+
+fin:forTimePeriod a owl:ObjectProperty ;
+    rdfs:label "for time period" ;
+    rdfs:domain fin:Metric ;
+    rdfs:range  fin:TimePeriod .
+
+fin:containsChart a owl:ObjectProperty ;
+    rdfs:label "contains chart" ;
+    rdfs:domain fin:Document ;
+    rdfs:range  fin:Chart .
+
+fin:chartShowsMetric a owl:ObjectProperty ;
+    rdfs:label "chart shows metric" ;
+    rdfs:domain fin:Chart ;
+    rdfs:range  fin:Metric .
+
+fin:metricForCompany a owl:ObjectProperty ;
+    rdfs:label "metric for company" ;
+    rdfs:domain fin:Metric ;
+    rdfs:range  fin:Company .
+
+# ─────────────────────────────────────────────────────────────
+# Data Properties — attributes with literal values
+# ─────────────────────────────────────────────────────────────
+
+fin:hasValue a owl:DatatypeProperty ;
+    rdfs:label "has value" ;
+    rdfs:domain fin:Metric ;
+    rdfs:range  xsd:decimal .
+
+fin:hasName a owl:DatatypeProperty ;
+    rdfs:label "has name" ;
+    rdfs:domain fin:Company ;
+    rdfs:range  xsd:string .
+
+fin:hasPeriodLabel a owl:DatatypeProperty ;
+    rdfs:label "has period label" ;
+    rdfs:domain fin:TimePeriod ;
+    rdfs:range  xsd:string .
+
+fin:hasDocumentTitle a owl:DatatypeProperty ;
+    rdfs:label "has document title" ;
+    rdfs:domain fin:Document ;
+    rdfs:range  xsd:string .

@@ -1,0 +1,12 @@
+# CQ1 — Which companies are mentioned in a given document?
+
+PREFIX fin: <https://froilan-sia.github.io/finance-ontology-rag/ontology#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?companyName
+WHERE {
+    ?document a fin:Document ;
+              fin:mentionsCompany ?company .
+    ?company fin:hasName ?companyName .
+}
+ORDER BY ?companyName
