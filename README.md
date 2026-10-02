@@ -4,7 +4,7 @@
 
 This repository explores how a formal ontology can give a RAG pipeline structured knowledge about financial documents — companies, metrics, time periods, and the relationships between them.
 
-It's the companion project to my [AI & RAG Architecture Series](https://[medium.com/@froilan.sia](https://medium.com/@froilan.sia/zero-cost-multimodal-rag-chromadb-313930800633)) and extends the vector-based pipeline into semantic retrieval and reasoning.
+It's the companion project to my [AI & RAG Architecture Series]([https://[medium.com/@froilan.sia](https://medium.com/@froilan.sia/zero-cost-multimodal-rag-chromadb-313930800633)](https://medium.com/@froilan.sia/zero-cost-multimodal-rag-chromadb-313930800633)) and extends the vector-based pipeline into semantic retrieval and reasoning.
 
 ---
 
