@@ -1,14 +1,15 @@
-# CQ3 — Which companies are mentioned in the same chart as Q3 2024 revenue?
-# Multi-hop: Chart → Metric → TimePeriod, and Chart → Metric → Company
+# Q3: What transactions has a given investor made?
+# Bind ?investor before running, e.g. to :Alice.
 
-PREFIX fin: <https://froilan-sia.github.io/finance-ontology-rag/ontology#>
+PREFIX : <https://froilan-sia.github.io/finance-ontology-rag/ontology#>
 
-SELECT DISTINCT ?companyName
+SELECT ?investor ?account ?tx ?amount ?currency ?date
 WHERE {
-    ?chart a fin:Chart ;
-           fin:chartShowsMetric ?metric .
-    ?metric fin:forTimePeriod ?period ;
-            fin:metricForCompany ?company .
-    ?period fin:hasPeriodLabel "Q3 2024" .
-    ?company fin:hasName ?companyName .
+    :Alice a :Investor ;
+           :hasAccount ?account .
+    ?account :hasTransaction ?tx .
+    ?tx :hasAmount ?amount ;
+        :hasCurrency ?currency ;
+        :hasDate ?date .
 }
+ORDER BY DESC(?date)

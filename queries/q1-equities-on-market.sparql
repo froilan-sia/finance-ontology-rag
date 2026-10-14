@@ -1,12 +1,12 @@
-# CQ1 — Which companies are mentioned in a given document?
+# Q1: Which equities trade on NASDAQ?
 
-PREFIX fin: <https://froilan-sia.github.io/finance-ontology-rag/ontology#>
+PREFIX : <https://froilan-sia.github.io/finance-ontology-rag/ontology#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT ?companyName
+SELECT ?equity ?name ?issuer
 WHERE {
-    ?document a fin:Document ;
-              fin:mentionsCompany ?company .
-    ?company fin:hasName ?companyName .
+    ?equity a :Equity ;
+            :tradedOn :NASDAQ ;
+            :issuedBy ?issuer ;
+            rdfs:label ?name .
 }
-ORDER BY ?companyName

@@ -1,14 +1,11 @@
-# CQ2 — What metrics does a company report, and for what time period?
+# Q2: Who issues a given financial instrument?
+# Bind ?instrument before running, e.g. to :AppleStock.
 
-PREFIX fin: <https://froilan-sia.github.io/finance-ontology-rag/ontology#>
+PREFIX : <https://froilan-sia.github.io/finance-ontology-rag/ontology#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT ?metricLabel ?value ?periodLabel
+SELECT ?issuer ?name
 WHERE {
-    ?metric a fin:Metric ;
-            fin:metricForCompany ?company ;
-            fin:hasValue ?value ;
-            fin:forTimePeriod ?period .
-    ?company fin:hasName ?metricLabel .
-    ?period fin:hasPeriodLabel ?periodLabel .
+    :AppleStock :issuedBy ?issuer .
+    ?issuer rdfs:label ?name .
 }
-ORDER BY ?periodLabel
