@@ -2,6 +2,8 @@
 @prefix : <https://froilan-sia.github.io/finance-ontology-rag/ontology#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+# Every FinancialInstrument must have an ISIN and an issuer.
+
 :FinancialInstrumentShape a sh:NodeShape ;
     sh:targetClass :FinancialInstrument ;
     sh:property [
@@ -9,9 +11,11 @@
         sh:minCount 1 ;
         sh:datatype xsd:string ;
         sh:pattern "^[A-Z]{2}[A-Z0-9]{9}[0-9]$" ;
+        sh:message "Every financial instrument must have an ISIN." ;
     ] ;
     sh:property [
         sh:path :issuedBy ;
         sh:class :Issuer ;
         sh:minCount 1 ;
+        sh:message "Every financial instrument must have an issuer." ;
     ] .
