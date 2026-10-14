@@ -9,8 +9,8 @@ A governed Retrieval-Augmented Generation (RAG) system for financial data. Combi
 | Ontology (`ontology/finance-ontology.ttl`) | ✅ 12 classes, 5 object properties, 5 data properties |
 | Reasoner verification | ✅ HermiT and Pellet run clean |
 | Inference | ✅ `AppleStock` inferred as `TradedEquity` |
-| SPARQL queries | ⏳ Not yet written |
-| SHACL validation | ⏳ Not yet written |
+| SPARQL queries | 🔄 Scaffolds in `queries/`, not yet tested against the graph |
+| SHACL validation | 🔄 Scaffold in `validation/`, not yet validated |
 | RAG fusion layer | ⏳ Not yet implemented |
 
 ## How to Verify the Inference
