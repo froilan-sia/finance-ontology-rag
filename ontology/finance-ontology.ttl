@@ -1,95 +1,169 @@
-@prefix owl:  <http://www.w3.org/2002/07/owl#> .
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
-@prefix fin:  <https://froilan-sia.github.io/finance-ontology-rag/ontology#> .
+# ============================================================
+# Finance Ontology RAG — starter ontology
+# Volume 1, Chapter 2
+# Open in Protégé 5: File > Open...
+# Save as: ontology/finance-ontology.ttl
+# ============================================================
 
-# ─────────────────────────────────────────────────────────────
-# Ontology declaration
-# ─────────────────────────────────────────────────────────────
+@prefix :      <https://froilan-sia.github.io/finance-ontology-rag/ontology#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 
-fin: a owl:Ontology ;
-    rdfs:label "Finance Ontology for RAG" ;
-    rdfs:comment "An ontology for structuring financial documents for semantic retrieval and GraphRAG pipelines." .
+# ------------------------------------------------------------
+# Ontology header
+# ------------------------------------------------------------
+<https://froilan-sia.github.io/finance-ontology-rag/ontology> a owl:Ontology ;
+    rdfs:label "Finance Ontology RAG" ;
+    rdfs:comment "Starter ontology for the finance-ontology-rag project. Covers financial instruments, parties, accounts, transactions, and markets." ;
+    owl:versionInfo "0.1.0" .
 
-# ─────────────────────────────────────────────────────────────
+# ------------------------------------------------------------
 # Classes
-# ─────────────────────────────────────────────────────────────
+# ------------------------------------------------------------
+:FinancialInstrument a owl:Class ;
+    rdfs:label "Financial Instrument" ;
+    rdfs:comment "A tradable or transferable financial asset." .
 
-fin:Document a owl:Class ;
-    rdfs:label "Document" ;
-    rdfs:comment "A financial document — report, filing, chart, or other artefact." .
+:Equity a owl:Class ;
+    rdfs:label "Equity" ;
+    rdfs:subClassOf :FinancialInstrument ;
+    rdfs:comment "A stock or share representing ownership." .
 
-fin:Company a owl:Class ;
-    rdfs:label "Company" ;
-    rdfs:comment "An organization mentioned or referenced in a document." .
+:Bond a owl:Class ;
+    rdfs:label "Bond" ;
+    rdfs:subClassOf :FinancialInstrument ;
+    rdfs:comment "A debt security." .
 
-fin:Metric a owl:Class ;
-    rdfs:label "Metric" ;
-    rdfs:comment "A measurable financial quantity — revenue, profit, margin, EPS, etc." .
+:Derivative a owl:Class ;
+    rdfs:label "Derivative" ;
+    rdfs:subClassOf :FinancialInstrument ;
+    rdfs:comment "A contract whose value derives from an underlying asset." .
 
-fin:TimePeriod a owl:Class ;
-    rdfs:label "Time Period" ;
-    rdfs:comment "A fiscal quarter, year, or other reporting period." .
+:Party a owl:Class ;
+    rdfs:label "Party" ;
+    rdfs:comment "An entity that participates in financial activity." .
 
-fin:Chart a owl:Class ;
-    rdfs:label "Chart" ;
-    rdfs:comment "A visual representation within a document." .
+:Issuer a owl:Class ;
+    rdfs:label "Issuer" ;
+    rdfs:subClassOf :Party .
 
-# ─────────────────────────────────────────────────────────────
-# Object Properties — relationships between entities
-# ─────────────────────────────────────────────────────────────
+:Broker a owl:Class ;
+    rdfs:label "Broker" ;
+    rdfs:subClassOf :Party .
 
-fin:mentionsCompany a owl:ObjectProperty ;
-    rdfs:label "mentions company" ;
-    rdfs:domain fin:Document ;
-    rdfs:range  fin:Company .
+:Investor a owl:Class ;
+    rdfs:label "Investor" ;
+    rdfs:subClassOf :Party .
 
-fin:reportsMetric a owl:ObjectProperty ;
-    rdfs:label "reports metric" ;
-    rdfs:domain fin:Document ;
-    rdfs:range  fin:Metric .
+:Account a owl:Class ;
+    rdfs:label "Account" ;
+    rdfs:comment "A financial account held by a party." .
 
-fin:forTimePeriod a owl:ObjectProperty ;
-    rdfs:label "for time period" ;
-    rdfs:domain fin:Metric ;
-    rdfs:range  fin:TimePeriod .
+:Transaction a owl:Class ;
+    rdfs:label "Transaction" ;
+    rdfs:comment "An exchange of value involving an instrument and an account." .
 
-fin:containsChart a owl:ObjectProperty ;
-    rdfs:label "contains chart" ;
-    rdfs:domain fin:Document ;
-    rdfs:range  fin:Chart .
+:Market a owl:Class ;
+    rdfs:label "Market" ;
+    rdfs:comment "A venue where financial instruments are traded." .
 
-fin:chartShowsMetric a owl:ObjectProperty ;
-    rdfs:label "chart shows metric" ;
-    rdfs:domain fin:Chart ;
-    rdfs:range  fin:Metric .
+# Derived class — lets the reasoner classify individuals automatically
+:TradedEquity a owl:Class ;
+    rdfs:label "Traded Equity" ;
+    owl:equivalentClass [
+        a owl:Class ;
+        owl:intersectionOf (
+            :Equity
+            [ a owl:Restriction ;
+              owl:onProperty :tradedOn ;
+              owl:someValuesFrom :Market ]
+        )
+    ] ;
+    rdfs:comment "An Equity that is traded on at least one Market." .
 
-fin:metricForCompany a owl:ObjectProperty ;
-    rdfs:label "metric for company" ;
-    rdfs:domain fin:Metric ;
-    rdfs:range  fin:Company .
+# ------------------------------------------------------------
+# Object properties
+# ------------------------------------------------------------
+:issuedBy a owl:ObjectProperty ;
+    rdfs:label "issued by" ;
+    rdfs:domain :FinancialInstrument ;
+    rdfs:range :Issuer .
 
-# ─────────────────────────────────────────────────────────────
-# Data Properties — attributes with literal values
-# ─────────────────────────────────────────────────────────────
+:tradedOn a owl:ObjectProperty ;
+    rdfs:label "traded on" ;
+    rdfs:domain :FinancialInstrument ;
+    rdfs:range :Market .
 
-fin:hasValue a owl:DatatypeProperty ;
-    rdfs:label "has value" ;
-    rdfs:domain fin:Metric ;
-    rdfs:range  xsd:decimal .
+:hasAccount a owl:ObjectProperty ;
+    rdfs:label "has account" ;
+    rdfs:domain :Party ;
+    rdfs:range :Account .
 
-fin:hasName a owl:DatatypeProperty ;
+:hasTransaction a owl:ObjectProperty ;
+    rdfs:label "has transaction" ;
+    rdfs:domain :Account ;
+    rdfs:range :Transaction .
+
+:involvesInstrument a owl:ObjectProperty ;
+    rdfs:label "involves instrument" ;
+    rdfs:domain :Transaction ;
+    rdfs:range :FinancialInstrument .
+
+# ------------------------------------------------------------
+# Data properties
+# ------------------------------------------------------------
+:hasISIN a owl:DatatypeProperty ;
+    rdfs:label "has ISIN" ;
+    rdfs:domain :FinancialInstrument ;
+    rdfs:range xsd:string .
+
+:hasName a owl:DatatypeProperty ;
     rdfs:label "has name" ;
-    rdfs:domain fin:Company ;
-    rdfs:range  xsd:string .
+    rdfs:domain :Party ;
+    rdfs:range xsd:string .
 
-fin:hasPeriodLabel a owl:DatatypeProperty ;
-    rdfs:label "has period label" ;
-    rdfs:domain fin:TimePeriod ;
-    rdfs:range  xsd:string .
+:hasAmount a owl:DatatypeProperty ;
+    rdfs:label "has amount" ;
+    rdfs:domain :Transaction ;
+    rdfs:range xsd:decimal .
 
-fin:hasDocumentTitle a owl:DatatypeProperty ;
-    rdfs:label "has document title" ;
-    rdfs:domain fin:Document ;
-    rdfs:range  xsd:string .
+:hasCurrency a owl:DatatypeProperty ;
+    rdfs:label "has currency" ;
+    rdfs:domain :Transaction ;
+    rdfs:range xsd:string .
+
+:hasDate a owl:DatatypeProperty ;
+    rdfs:label "has date" ;
+    rdfs:domain :Transaction ;
+    rdfs:range xsd:dateTime .
+
+# ------------------------------------------------------------
+# Individuals (small sample so the reasoner has something to do)
+# ------------------------------------------------------------
+:AppleInc a :Issuer ;
+    :hasName "Apple Inc." .
+
+:NASDAQ a :Market ;
+    rdfs:label "NASDAQ" .
+
+:AppleStock a :Equity ;
+    rdfs:label "Apple Inc. Common Stock" ;
+    :hasISIN "US0378331005" ;
+    :issuedBy :AppleInc ;
+    :tradedOn :NASDAQ .
+
+:Alice a :Investor ;
+    :hasName "Alice" ;
+    :hasAccount :AliceBrokerageAccount .
+
+:AliceBrokerageAccount a :Account ;
+    rdfs:label "Alice's Brokerage Account" ;
+    :hasTransaction :ApplePurchase .
+
+:ApplePurchase a :Transaction ;
+    :hasAmount 10.0 ;
+    :hasCurrency "USD" ;
+    :hasDate "2026-10-14T00:00:00Z"^^xsd:dateTime ;
+    :involvesInstrument :AppleStock .

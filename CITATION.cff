@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this ontology, please cite it as below."
+authors:
+  - family-names: "Sia"
+    given-names: "Froilan"
+title: "Finance Ontology for RAG"
+version: 0.1.0
+date-released: 2026-10-02
+url: "https://github.com/froilan-sia/finance-ontology-rag"
