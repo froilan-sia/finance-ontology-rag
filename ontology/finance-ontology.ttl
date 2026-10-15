@@ -143,6 +143,7 @@
 # Individuals (small sample so the reasoner has something to do)
 # ------------------------------------------------------------
 :AppleInc a :Issuer ;
+    rdfs:label "Apple Inc.";
     :hasName "Apple Inc." .
 
 :NASDAQ a :Market ;
@@ -155,6 +156,7 @@
     :tradedOn :NASDAQ .
 
 :Alice a :Investor ;
+    rdfs:label "Alice";
     :hasName "Alice" ;
     :hasAccount :AliceBrokerageAccount .
 
