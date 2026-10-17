@@ -82,6 +82,8 @@
         )
     ] ;
     rdfs:comment "An Equity that is traded on at least one Market." .
+# Enforcing enterprise safety via disjoint classes:
+:Equity owl:disjointWith :Bond, :Derivative .
 
 # ------------------------------------------------------------
 # Object properties

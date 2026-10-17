@@ -111,5 +111,18 @@ Classes are categories. Individuals are members. In Protégé, a specific compan
 
 **Open question (resolved):** How do I get the HermiT reasoner to infer `TradedEquity` from the `tradedOn` relation? *Answer: use an equivalence axiom with `owl:someValuesFrom` and add `rdfs:subClassOf :Equity` to the defined class. The nested `owl:intersectionOf` syntax caused Protégé's Turtle parser to silently drop the block — splitting it into two axioms resolved the issue.*
 
+
+## 2026-10-15 — First successful SPARQL queries
+
+**Milestone:** All three competency questions return results against the finance ontology.
+
+- Q1 — Which equities trade on NASDAQ? → Returns `:AppleStock` issued by `:AppleInc`
+- Q2 — Who issues a given financial instrument? → Returns `:AppleInc` with label "Apple Inc."
+- Q3 — What transactions has a given investor made? → Returns `:Alice` → `:AliceBrokerageAccount` → `:ApplePurchase` (10.0 USD)
+
+**Screenshots:** `docs/screenshots/q1_query.png`, `q2_query.png`, `q3_query.png`
+
+**Aha:** The fix for Q2 was adding `rdfs:label` to `:AppleInc` — the query was looking for `rdfs:label`, but the individual only had `:hasName`. Standard practice is to use `rdfs:label` for human-readable names and reserve domain-specific properties like `:hasName` for when they carry additional semantics.
+
 ---
 
