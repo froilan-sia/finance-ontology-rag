@@ -10,6 +10,7 @@
     sh:property [
         sh:path :hasISIN ;
         sh:minCount 1 ;
+        sh:maxCount 1 ;  # Enforces 'exactly one'
         sh:datatype xsd:string ;
         sh:pattern "^[A-Z]{2}[A-Z0-9]{9}[0-9]$" ;
         sh:message "Violation: Every financial instrument must have an ISIN." ;
