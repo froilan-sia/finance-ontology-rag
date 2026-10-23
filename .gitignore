@@ -17,3 +17,10 @@ venv/
 
 # Env
 .env
+
+# Local Databases
+chroma_db/
+*.sqlite3
+
+# Mac
+.DS_Store
