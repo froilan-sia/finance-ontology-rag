@@ -27,6 +27,19 @@ This repository uses GitHub Actions to enforce data quality. Every push to `main
 [![Ontology Data Governance CI](https://github.com/froilan-sia/finance-ontology-rag/actions/workflows/validate-ontology.yml/badge.svg)](https://github.com/froilan-sia/finance-ontology-rag/actions/workflows/validate-ontology.yml)
 
 
+## Article Series: Enterprise Ontology & RAG
+
+This repository is built incrementally as part of an 8-part Medium series on enterprise data architecture.
+
+1. [Why Your RAG Pipeline Needs an Ontology (And How to Build One)](https://medium.com/@froilan.sia/why-your-rag-pipeline-needs-an-ontology-and-how-to-build-one-2b9eb952f626)
+2. [Automating Data Governance: CI/CD for Your Knowledge Graph](https://medium.com/@froilan.sia/automating-data-governance-cicd-knowledge-graph-0f04b5206826)
+3. Building the Dual-Branch RAG: Python, rdflib, and ChromaDB *(Coming Soon)*
+4. From Tables to Triples: The "Cold Start" Problem in Enterprise Ontologies *(Coming Soon)*
+5. Protégé vs. GraphDB vs. Neo4j: Choosing Your Ontology Tooling *(Coming Soon)*
+6. Designing AI-Ready Data Foundations: The HKMA Perspective *(Coming Soon)*
+7. The Competency Question Method: How to Scope an Ontology *(Coming Soon)*
+8. Data-First vs. AI-First: Architecting the Future of Agentic Workflows *(Coming Soon)*
+
 ## Related Articles
 
 - [The Definitive Guide to Becoming a Solution Data Architect](https://medium.com/@froilan.sia/solution-data-architect-guide-togaf-dama-iasa-003959efa4d9)
