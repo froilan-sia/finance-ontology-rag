@@ -6,16 +6,18 @@
 
 :FinancialInstrumentShape a sh:NodeShape ;
     sh:targetClass :FinancialInstrument ;
+    # Constraint 1: Exactly one valid ISIN (Completeness + Validity)
     sh:property [
         sh:path :hasISIN ;
         sh:minCount 1 ;
         sh:datatype xsd:string ;
         sh:pattern "^[A-Z]{2}[A-Z0-9]{9}[0-9]$" ;
-        sh:message "Every financial instrument must have an ISIN." ;
+        sh:message "Violation: Every financial instrument must have an ISIN." ;
     ] ;
+    # Constraint 2: Must have an issuer (Referential Integrity)
     sh:property [
         sh:path :issuedBy ;
         sh:class :Issuer ;
         sh:minCount 1 ;
-        sh:message "Every financial instrument must have an issuer." ;
+        sh:message "Violation: Every financial instrument must have an issuer." ;
     ] .

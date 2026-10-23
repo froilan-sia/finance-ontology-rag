@@ -32,7 +32,7 @@ def validate_ontology_graph(data_file: str, shapes_file: str) -> bool:
 
 if __name__ == "__main__":
     data_path = "ontology/finance-ontology.ttl"
-    shapes_path = "validation/equity_shapes.ttl"
+    shapes_path = "validation/financial-instrument-shape.ttl"
     
     is_valid = validate_ontology_graph(data_path, shapes_path)
     if not is_valid:
