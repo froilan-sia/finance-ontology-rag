@@ -81,7 +81,7 @@ This repository uses GitHub Actions to enforce data quality. Every push to `main
 
 This repository is built incrementally as part of an 8-part Medium series on enterprise data architecture. The code currently available reflects the progress up to Article 4.
 
-1. *[Why Your RAG Pipeline Needs an Ontology (And How to Build One)*](Why Your RAG Pipeline Needs an Ontology (And How to Build One))*
+1. *[Why Your RAG Pipeline Needs an Ontology (And How to Build One)](https://medium.com/@froilan.sia/why-your-rag-pipeline-needs-an-ontology-and-how-to-build-one-2b9eb952f626)*
 2. *[Automating Data Governance: CI/CD for Your Knowledge Graph](https://medium.com/@froilan.sia/automating-data-governance-cicd-knowledge-graph-0f04b5206826)*
 3. *[Building the Dual-Branch RAG: Python, rdflib, and ChromaDB*](https://medium.com/@froilan.sia/building-the-dual-branch-rag-python-rdflib-and-chromadb-e7ec9470d362)*
 4. **From Tables to Triples: The "Cold Start" Problem in Enterprise Ontologies** *(Current state of repository)*
