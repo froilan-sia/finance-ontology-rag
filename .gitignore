@@ -24,3 +24,6 @@ chroma_db/
 
 # Mac
 .DS_Store
+
+# Generated data outputs
+data/

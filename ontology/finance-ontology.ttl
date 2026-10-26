@@ -85,6 +85,10 @@
 # Enforcing enterprise safety via disjoint classes:
 :Equity owl:disjointWith :Bond, :Derivative .
 
+:Metric a owl:Class ;
+    rdfs:label "Metric" ;
+    rdfs:comment "A financial measurement such as revenue or profit." .
+
 # ------------------------------------------------------------
 # Object properties
 # ------------------------------------------------------------
@@ -112,6 +116,11 @@
     rdfs:label "involves instrument" ;
     rdfs:domain :Transaction ;
     rdfs:range :FinancialInstrument .
+
+:reportsMetric a owl:ObjectProperty ;
+    rdfs:label "reports metric" ;
+    rdfs:domain :Issuer ;
+    rdfs:range :Metric .
 
 # ------------------------------------------------------------
 # Data properties
@@ -141,6 +150,10 @@
     rdfs:domain :Transaction ;
     rdfs:range xsd:dateTime .
 
+:hasValue a owl:DatatypeProperty ;
+    rdfs:label "has value" ;
+    rdfs:domain :Metric ;
+    rdfs:range xsd:string .
 # ------------------------------------------------------------
 # Individuals (small sample so the reasoner has something to do)
 # ------------------------------------------------------------
