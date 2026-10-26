@@ -20,16 +20,15 @@ A governed Retrieval-Augmented Generation (RAG) system for financial data. Combi
 
 > **Note:** The following instructions will run the Python codebase developed in Article 3 and Article 4.
 
-### Prerequisites
-The scripts use Ollama to run a local LLM. Ensure you have Ollama installed and the required model pulled:
-
-```bash
-ollama pull qwen2.5:3b
-```
-
 ### Setup & Execution
 
-1. **Create and activate a virtual environment:**
+1. Clone the repository
+   ```bash
+   git clone https://github.com/froilan-sia/finance-ontology-rag.git
+   cd finance-ontology-rag
+   ```
+
+2. Create and activate a virtual environment:
    ```bash
    python3 -m venv venv
    source venv/bin/activate
@@ -54,6 +53,13 @@ ollama pull qwen2.5:3b
    ```bash
    python app/extract_entities.py
    ```
+
+### Prerequisites
+The scripts use Ollama to run a local LLM. Ensure you have Ollama installed and the required model pulled:
+
+```bash
+ollama pull qwen2.5:3b
+```
 
 ---
 
@@ -93,6 +99,6 @@ This repository is built incrementally as part of an 8-part Medium series on ent
 
 ## Related Articles
 
-* The Definitive Guide to Becoming a Solution Data Architect
-* Zero-Cost Local Multimodal RAG with ChromaDB
+* [The Definitive Guide to Becoming a Solution Data Architect](https://medium.com/@froilan.sia/solution-data-architect-guide-togaf-dama-iasa-003959efa4d9)
+* [Zero-Cost Local Multimodal RAG with ChromaDB](https://medium.com/@froilan.sia/zero-cost-multimodal-rag-chromadb-313930800633)
 
