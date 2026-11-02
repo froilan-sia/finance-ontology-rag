@@ -12,7 +12,7 @@ A governed Retrieval-Augmented Generation (RAG) system for financial data. Combi
 | **SPARQL Queries** | [Article 1](https://medium.com/@froilan.sia/why-your-rag-pipeline-needs-an-ontology-and-how-to-build-one-2b9eb952f626) | ✅ Q1–Q3 verified in Protégé, results in `docs/screenshots/` |
 | **SHACL Validation** | [Article 2](https://medium.com/@froilan.sia/automating-data-governance-cicd-knowledge-graph-0f04b5206826) | ✅ Automated via GitHub Actions (`pyshacl`) |
 | **Dual-Branch RAG (Python)** | [Article 3](https://medium.com/@froilan.sia/building-the-dual-branch-rag-python-rdflib-and-chromadb-e7ec9470d362) | ✅ ChromaDB + `rdflib` + Ollama fusion layer implemented |
-| **Ontology-Driven Extraction** | Article 4 | ✅ LLM entity extraction to RDF implemented |
+| **Ontology-Driven Extraction** | [Article 4](https://medium.com/@froilan.sia/from-tables-to-triples-cold-start-problem-ontology-9414a08abf58) | ✅ LLM entity extraction to RDF implemented |
 
 ---
 
@@ -90,7 +90,7 @@ This repository is built incrementally as part of an 8-part Medium series on ent
 1. *[Why Your RAG Pipeline Needs an Ontology (And How to Build One)](https://medium.com/@froilan.sia/why-your-rag-pipeline-needs-an-ontology-and-how-to-build-one-2b9eb952f626)*
 2. *[Automating Data Governance: CI/CD for Your Knowledge Graph](https://medium.com/@froilan.sia/automating-data-governance-cicd-knowledge-graph-0f04b5206826)*
 3. *[Building the Dual-Branch RAG: Python, rdflib, and ChromaDB*](https://medium.com/@froilan.sia/building-the-dual-branch-rag-python-rdflib-and-chromadb-e7ec9470d362)*
-4. **From Tables to Triples: The "Cold Start" Problem in Enterprise Ontologies** *(Current state of repository)*
+4. [From Tables to Triples: The "Cold Start" Problem in Enterprise Ontologies](https://medium.com/@froilan.sia/from-tables-to-triples-cold-start-problem-ontology-9414a08abf58) *(Current state of repository)*
 5. *Protégé vs. GraphDB vs. Neo4j: Choosing Your Ontology Tooling (Coming Soon)*
 6. *Designing AI-Ready Data Foundations: The HKMA Perspective (Coming Soon)*
 7. *The Competency Question Method: How to Scope an Ontology (Coming Soon)*
