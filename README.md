@@ -13,6 +13,8 @@ A governed Retrieval-Augmented Generation (RAG) system for financial data. Combi
 | **SHACL Validation** | [Article 2](https://medium.com/@froilan.sia/automating-data-governance-cicd-knowledge-graph-0f04b5206826) | ✅ Automated via GitHub Actions (`pyshacl`) |
 | **Dual-Branch RAG (Python)** | [Article 3](https://medium.com/@froilan.sia/building-the-dual-branch-rag-python-rdflib-and-chromadb-e7ec9470d362) | ✅ ChromaDB + `rdflib` + Ollama fusion layer implemented |
 | **Ontology-Driven Extraction** | [Article 4](https://medium.com/@froilan.sia/from-tables-to-triples-cold-start-problem-ontology-9414a08abf58) | ✅ LLM entity extraction to RDF implemented |
+| **Tooling Comparison (Neo4j)** | Article 5 | ✅ Schema, seed, Q1 runner verified locally |
+| **Tooling Comparison (NebulaGraph)** | Article 5 | ⚠️ Illustrative nGQL only, not tested |
 
 ---
 
@@ -82,6 +84,67 @@ This repository uses GitHub Actions to enforce data quality. Every push to `main
 
 
 ---
+## Tooling Comparison (Article 5)
+
+Article 5 compares three graph paradigms: RDF triplestores (GraphDB),
+labeled property graphs (Neo4j), and distributed property graphs
+(NebulaGraph). The runnable comparison lives in [`neo4j/`](neo4j/).
+
+| Tool | Model | This repo | Status |
+|---|---|---|---|
+| Protegé | OWL / RDF (design-time) | `ontology/` | ✅ Article 1 |
+| GraphDB | RDF triplestore | `ontology/` (load into GraphDB) | ✅ Article 1 |
+| Neo4j | Property graph | `neo4j/` | ✅ Article 5 |
+| NebulaGraph | Distributed property graph | `neo4j/nebula/` | ⚠️ illustrative syntax only, not tested |
+
+### Running the Neo4j comparison
+
+**1. Start Neo4j 5 (Docker):**
+
+    docker run -d --name neo4j-article5 \
+      -p 7474:7474 -p 7687:7687 \
+      -e NEO4J_AUTH=neo4j/testpassword \
+      neo4j:5
+
+**2. Install the driver:**
+
+    pip install -r requirements.txt
+
+**3. Run the comparison script:**
+
+    python scripts/test_neo4j_ingestion.py
+
+The script loads `neo4j/schema.cypher` and `neo4j/seed.cypher`,
+runs the Q1 competency query from Article 1 in Cypher, and prints
+the result alongside a count of explicitly labelled `:TradedEquity`
+nodes. That count is `0` — Neo4j has no native OWL reasoner, so the
+classification that GraphDB infers must be written at ingest time
+or computed in the application layer. The script is the proof.
+
+To override the default connection (`bolt://localhost:7687`,
+`neo4j` / `testpassword`):
+
+    NEO4J_URI=bolt://localhost:7687 \
+    NEO4J_USER=neo4j \
+    NEO4J_PASSWORD=testpassword \
+    python scripts/test_neo4j_ingestion.py
+
+### NebulaGraph
+
+`neo4j/nebula/` contains illustrative nGQL syntax for the same data.
+It has **not** been run against a live NebulaGraph cluster; treat it
+as reference only. See the transparency note in Article 5.
+
+### Files
+
+- [`neo4j/schema.cypher`](neo4j/schema.cypher) — uniqueness, node-key,
+  and property-existence constraints (Neo4j 5+)
+- [`neo4j/seed.cypher`](neo4j/seed.cypher) — Apple/MSFT seed data
+- [`neo4j/queries.cypher`](neo4j/queries.cypher) — Q1–Q3 in Cypher
+- [`neo4j/nebula/`](neo4j/nebula/) — illustrative nGQL (not tested)
+- [`scripts/test_neo4j_ingestion.py`](scripts/test_neo4j_ingestion.py) —
+  loader + Q1 runner + `:TradedEquity` count
+---
 
 ## Article Series: Enterprise Ontology & RAG
 
@@ -90,8 +153,8 @@ This repository is built incrementally as part of an 8-part Medium series on ent
 1. *[Why Your RAG Pipeline Needs an Ontology (And How to Build One)](https://medium.com/@froilan.sia/why-your-rag-pipeline-needs-an-ontology-and-how-to-build-one-2b9eb952f626)*
 2. *[Automating Data Governance: CI/CD for Your Knowledge Graph](https://medium.com/@froilan.sia/automating-data-governance-cicd-knowledge-graph-0f04b5206826)*
 3. *[Building the Dual-Branch RAG: Python, rdflib, and ChromaDB*](https://medium.com/@froilan.sia/building-the-dual-branch-rag-python-rdflib-and-chromadb-e7ec9470d362)*
-4. [From Tables to Triples: The "Cold Start" Problem in Enterprise Ontologies](https://medium.com/@froilan.sia/from-tables-to-triples-cold-start-problem-ontology-9414a08abf58) *(Current state of repository)*
-5. *Protégé vs. GraphDB vs. Neo4j: Choosing Your Ontology Tooling (Coming Soon)*
+4. *[From Tables to Triples: The "Cold Start" Problem in Enterprise Ontologies](https://medium.com/@froilan.sia/from-tables-to-triples-cold-start-problem-ontology-9414a08abf58)* 
+5. *Protégé vs. GraphDB vs. Neo4j: Choosing Your Ontology Tooling (Current state of repository)*
 6. *Designing AI-Ready Data Foundations: The HKMA Perspective (Coming Soon)*
 7. *The Competency Question Method: How to Scope an Ontology (Coming Soon)*
 8. *Data-First vs. AI-First: Architecting the Future of Agentic Workflows (Coming Soon)*

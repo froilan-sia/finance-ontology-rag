@@ -1,0 +1,27 @@
+// ============================================================
+// ILLUSTRATIVE nGQL -- NOT TESTED against a live NebulaGraph
+// cluster. Provided as reference for Article 5's NebulaGraph
+// section. Syntax follows the documented nGQL specification.
+// ============================================================
+
+CREATE SPACE IF NOT EXISTS finance (vid_type = FIXED_STRING(64));
+USE finance;
+
+CREATE TAG IF NOT EXISTS equity(ticker string, name string);
+CREATE TAG IF NOT EXISTS issuer(name string);
+CREATE TAG IF NOT EXISTS market(name string);
+
+CREATE EDGE IF NOT EXISTS issued_by();
+CREATE EDGE IF NOT EXISTS traded_on();
+
+INSERT VERTEX equity(ticker, name)
+VALUES "AAPL":("AAPL", "Apple Inc. Common Stock");
+
+INSERT VERTEX issuer(name)
+VALUES "AppleInc":("Apple Inc.");
+
+INSERT VERTEX market(name)
+VALUES "NASDAQ":("NASDAQ");
+
+INSERT EDGE issued_by() VALUES "AAPL"->"AppleInc":();
+INSERT EDGE traded_on() VALUES "AAPL"->"NASDAQ":();
