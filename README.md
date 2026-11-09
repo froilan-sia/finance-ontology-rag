@@ -160,6 +160,7 @@ as reference only. See the transparency note in Article 5.
 - [`neo4j/nebula/`](neo4j/nebula/) — illustrative nGQL (not tested)
 - [`scripts/test_neo4j_ingestion.py`](scripts/test_neo4j_ingestion.py) —
   loader + Q1 runner + `:TradedEquity` count
+- [`docs/neo4j-verification.md`](docs/neo4j-verification.md) — Troubleshooting log and proof of execution
 ---
 
 ## Article Series: Enterprise Ontology & RAG
