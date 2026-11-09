@@ -1,4 +1,4 @@
 rdflib
 chromadb
 ollama
-new4j>=5.18.0
+neo4j>=5.18.0

@@ -126,8 +126,10 @@ def main() -> int:
 
         n = traded_equity_label_count(driver)
         print(
-            f"\nNodes explicitly labelled :TradedEquity = {n} "
-            f"(Neo4j has no OWL reasoner; this is expected)"
+            f"\nNodes explicitly labelled :TradedEquity = {n}"
+            "\n  -> Neo4j emits a 'label does not exist' warning above."
+            "\n     That warning is the point: no reasoner created the label."
+            "\n     GraphDB infers it from the OWL axiom; Neo4j does not."
         )
         print(
             "\nCompare with Article 1's SPARQL result: the answer to Q1 "

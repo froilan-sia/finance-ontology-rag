@@ -15,11 +15,11 @@ CREATE CONSTRAINT market_name_unique IF NOT EXISTS
 FOR (m:Market) REQUIRE m.name IS UNIQUE;
 
 // Property existence: every Equity must carry a ticker and a name
-CREATE CONSTRAINT equity_ticker_exists IF NOT EXISTS
-FOR (e:Equity) REQUIRE e.ticker IS NOT NULL;
+//CREATE CONSTRAINT equity_ticker_exists IF NOT EXISTS
+//FOR (e:Equity) REQUIRE e.ticker IS NOT NULL;
 
-CREATE CONSTRAINT equity_name_exists IF NOT EXISTS
-FOR (e:Equity) REQUIRE e.name IS NOT NULL;
+//CREATE CONSTRAINT equity_name_exists IF NOT EXISTS
+//FOR (e:Equity) REQUIRE e.name IS NOT NULL;
 
 // Indexes to support the traversal patterns in our competency questions
 CREATE INDEX equity_name_idx IF NOT EXISTS FOR (e:Equity) ON (e.name);

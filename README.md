@@ -36,22 +36,22 @@ A governed Retrieval-Augmented Generation (RAG) system for financial data. Combi
    source venv/bin/activate
    ```
 
-2. **Install dependencies:**
+3. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Seed the local vector database:**
+4. **Seed the local vector database:**
    ```bash
    python app/setup_chroma.py
    ```
 
-4. **Run the Dual-Branch RAG pipeline:**
+5. **Run the Dual-Branch RAG pipeline:**
    ```bash
    python app/rag_fusion.py
    ```
 
-5. **Run the Ontology-Driven Extraction:**
+6. **Run the Ontology-Driven Extraction:**
    ```bash
    python app/extract_entities.py
    ```
@@ -106,11 +106,28 @@ labeled property graphs (Neo4j), and distributed property graphs
       -e NEO4J_AUTH=neo4j/testpassword \
       neo4j:5
 
-**2. Install the driver:**
+> No separate `docker pull` is needed — `docker run` pulls `neo4j:5`
+> automatically if the image isn't present locally. The first run
+> downloads ~500 MB, so give it a minute. Once it's up, the browser
+> UI is at http://localhost:7474 (user: `neo4j`, password:
+> `testpassword`), and the Bolt endpoint the Python driver uses is
+> `bolt://localhost:7687`.
+
+
+**2. Wait for the container to be healthy, then verify:**
+
+    docker logs -f neo4j-article5
+    # wait until you see: "Started."
+    # then Ctrl-C to stop following the logs
+
+    # optional sanity check from the shell:
+    docker exec neo4j-article5 cypher-shell -u neo4j -p testpassword "RETURN 1;"
+
+**3. Install the driver:**
 
     pip install -r requirements.txt
 
-**3. Run the comparison script:**
+**4. Run the comparison script:**
 
     python scripts/test_neo4j_ingestion.py
 
@@ -137,8 +154,7 @@ as reference only. See the transparency note in Article 5.
 
 ### Files
 
-- [`neo4j/schema.cypher`](neo4j/schema.cypher) — uniqueness, node-key,
-  and property-existence constraints (Neo4j 5+)
+- [`neo4j/schema.cypher`](neo4j/schema.cypher) — uniqueness constraints and indexes (Community Edition compatible)
 - [`neo4j/seed.cypher`](neo4j/seed.cypher) — Apple/MSFT seed data
 - [`neo4j/queries.cypher`](neo4j/queries.cypher) — Q1–Q3 in Cypher
 - [`neo4j/nebula/`](neo4j/nebula/) — illustrative nGQL (not tested)
