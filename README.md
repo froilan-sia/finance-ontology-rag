@@ -13,7 +13,7 @@ A governed Retrieval-Augmented Generation (RAG) system for financial data. Combi
 | **SHACL Validation** | [Article 2](https://medium.com/@froilan.sia/automating-data-governance-cicd-knowledge-graph-0f04b5206826) | ✅ Automated via GitHub Actions (`pyshacl`) |
 | **Dual-Branch RAG (Python)** | [Article 3](https://medium.com/@froilan.sia/building-the-dual-branch-rag-python-rdflib-and-chromadb-e7ec9470d362) | ✅ ChromaDB + `rdflib` + Ollama fusion layer implemented |
 | **Ontology-Driven Extraction** | [Article 4](https://medium.com/@froilan.sia/from-tables-to-triples-cold-start-problem-ontology-9414a08abf58) | ✅ LLM entity extraction to RDF implemented |
-| **Tooling Comparison (Neo4j)** | [Article 5] (https://medium.com/@froilan.sia/protege-vs-graphdb-vs-neo4j-ontology-tooling-26f989e56315?source=friends_link&sk=941de6d268fbcb102557237709bcd414) | ✅ Schema, seed, Q1 runner verified locally |
+| **Tooling Comparison (Neo4j)** | [Article 5](https://medium.com/@froilan.sia/protege-vs-graphdb-vs-neo4j-ontology-tooling-26f989e56315?source=friends_link&sk=941de6d268fbcb102557237709bcd414) | ✅ Schema, seed, Q1 runner verified locally |
 | **Tooling Comparison (NebulaGraph)** | [Article 5](https://medium.com/@froilan.sia/protege-vs-graphdb-vs-neo4j-ontology-tooling-26f989e56315?source=friends_link&sk=941de6d268fbcb102557237709bcd414) | ⚠️ Illustrative nGQL only, not tested |
 
 ---
