@@ -171,8 +171,8 @@ This repository is built incrementally as part of an 8-part Medium series on ent
 2. *[Automating Data Governance: CI/CD for Your Knowledge Graph](https://medium.com/@froilan.sia/automating-data-governance-cicd-knowledge-graph-0f04b5206826)*
 3. *[Building the Dual-Branch RAG: Python, rdflib, and ChromaDB*](https://medium.com/@froilan.sia/building-the-dual-branch-rag-python-rdflib-and-chromadb-e7ec9470d362)*
 4. *[From Tables to Triples: The "Cold Start" Problem in Enterprise Ontologies](https://medium.com/@froilan.sia/from-tables-to-triples-cold-start-problem-ontology-9414a08abf58)* 
-5. *Protégé vs. GraphDB vs. Neo4j: Choosing Your Ontology Tooling (Current state of repository)*
-6. *Designing AI-Ready Data Foundations: The HKMA Perspective (Coming Soon)*
+5. *[Protégé vs. GraphDB vs. Neo4j: Choosing Your Ontology Tooling](https://medium.com/@froilan.sia/protege-vs-graphdb-vs-neo4j-ontology-tooling-26f989e56315?source=friends_link&sk=941de6d268fbcb102557237709bcd414)*
+6. *[Designing AI-Ready Data Foundations: The HKMA Perspective](https://medium.com/@froilan.sia/ai-ready-data-foundations-hkma-perspective-132211ea13cf?source=friends_link&sk=03d23b5e71f1cf55137f4e08cf35f1b2) (Current state of repository)*
 7. *The Competency Question Method: How to Scope an Ontology (Coming Soon)*
 8. *Data-First vs. AI-First: Architecting the Future of Agentic Workflows (Coming Soon)*
 ---
